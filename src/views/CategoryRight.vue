@@ -151,7 +151,7 @@
         return formatHref(item)
       },
       formatTitle: function(item:any) {
-        return formatTitle(item)
+        return `${formatTitle(item).substring(0, 72)}...`
       },
       formatImage: function(item:any) {
         return formatImage(item)

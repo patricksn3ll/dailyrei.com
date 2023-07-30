@@ -62,7 +62,7 @@
                                                             <div class="grid-post-box-meta pcbg-meta item-hover">
                                                                 <div class="pcbg-meta-desc"> <span class="bg-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{  formatTimeSince(item) }}</time></span> </div>
                                                                 <div class="pcbg-pexcerpt">
-                                                                  <p>{{  formatDescription(item) }}</p>
+                                                                  <p>{{  formatDescription(item, 180) }}</p>
                                                                 </div>
                                                             </div>
                                                           </div>
@@ -115,7 +115,20 @@
 </template>
 
 <script lang="ts">
-  import {formatHref, formatTitle, formatCategoryHref, formatDescription, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage} from '../assets/js/utilities.js'
+  import {
+    formatHref,
+    formatTitle,
+    formatCategoryHref,
+    formatDescription,
+    formatAuthor,
+    formatAuthorHref,
+    formatPublishDate,
+    formatTimeSince,
+    formatImage,
+    formatBgImage,
+    titleLength,
+    descriptionLength
+  } from '../assets/js/utilities.js'
 
   export default {
     name: 'CategorySmall',
@@ -152,10 +165,10 @@
         return formatHref(item)
       },
       formatTitle: function(item:any) {
-        return formatTitle(item)
+        return `${formatTitle(item).substring(0, titleLength)}...`
       },
       formatDescription: function(item:any) {
-        return formatDescription(item)
+        return formatDescription(item).substring(0, descriptionLength)
       },
       formatImage: function(item:any) {
         return formatImage(item)

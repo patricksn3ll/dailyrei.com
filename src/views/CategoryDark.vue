@@ -213,7 +213,18 @@
 </template>
 
 <script lang="ts">
-  import {formatHref, formatTitle, formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage} from '../assets/js/utilities.js'
+  import {
+   formatHref,
+   formatTitle,
+   formatCategoryHref,
+   formatAuthor,
+   formatAuthorHref,
+   formatPublishDate,
+   formatTimeSince,
+   formatImage,
+   formatBgImage,
+   titleLength
+} from '../assets/js/utilities.js'
 
   export default {
     name: 'CategoryDark',
@@ -250,7 +261,7 @@
         return formatHref(item)
       },
       formatTitle: function(item:any) {
-        return formatTitle(item)
+        return `${formatTitle(item).substring(0, titleLength)}...`
       },
       formatImage: function(item:any) {
         return formatImage(item)
