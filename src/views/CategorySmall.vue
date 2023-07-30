@@ -62,7 +62,7 @@
                                                             <div class="grid-post-box-meta pcbg-meta item-hover">
                                                                 <div class="pcbg-meta-desc"> <span class="bg-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{  formatTimeSince(item) }}</time></span> </div>
                                                                 <div class="pcbg-pexcerpt">
-                                                                  <p>{{  formatDescription(item, 180) }}</p>
+                                                                  <p>{{  formatDescription(item) }}</p>
                                                                 </div>
                                                             </div>
                                                           </div>
