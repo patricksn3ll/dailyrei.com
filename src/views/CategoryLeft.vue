@@ -1,0 +1,167 @@
+
+<template>
+  <section class="penci-section penci-disSticky penci-structure-10 elementor-section elementor-top-section elementor-element elementor-element-cb41842 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="cb41842" data-element_type="section">
+    <div class="elementor-container elementor-column-gap-no">
+      <div class="penci-ercol-100 penci-ercol-order-1 penci-sticky-ct elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4476ee4" data-id="4476ee4" data-element_type="column">
+          <div class="elementor-widget-wrap elementor-element-populated">
+            <div class="elementor-element elementor-element-84783a9 elementor-widget elementor-widget-penci-fancy_heading" data-id="84783a9" data-element_type="widget" data-widget_type="penci-fancy_heading.default">
+                <div class="elementor-widget-container">
+                  <div class="penci-fancy-heading penci-heading-text-center">
+                      <div class="penci-fancy-heading-inner">
+                        <h2 class="penci-heading-title"><span class="inner-tit"> {{ selectedCategory }}</span></h2>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="elementor-element elementor-element-4d19d5a elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="4d19d5a" data-element_type="widget" data-widget_type="divider.default">
+                <div class="elementor-widget-container">
+                  <div class="elementor-divider"> <span class="elementor-divider-separator"> </span> </div>
+                </div>
+            </div>
+            <section class="penci-section penci-disSticky penci-structure-20 elementor-section elementor-inner-section elementor-element elementor-element-c378479 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c378479" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-no">
+                  <div class="penci-ercol-50 penci-ercol-order-1 penci-sticky-ct elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-58d65ca" data-id="58d65ca" data-element_type="column">
+                      <div class="elementor-widget-wrap elementor-element-populated">
+                        <div class="elementor-element elementor-element-8b25407 elementor-widget elementor-widget-penci-small-list" data-id="8b25407" data-element_type="widget" data-widget_type="penci-small-list.default">
+                            <div class="elementor-widget-container">
+                              <div class="penci-wrapper-smalllist">
+                                  <div class="penci-smalllist-wrapper">
+                                    <div class="penci-smalllist pcsl-wrapper pwsl-id-default">
+                                        <div class="pcsl-inner penci-clearfix pcsl-grid pcsl-imgpos-left pcsl-col-1 pcsl-tabcol-2 pcsl-mobcol-1">
+                                          <div class="pcsl-item pcsl-nothumb" v-for="item in results.slice(0, 4)" :key="item">
+                                              <div class="pcsl-itemin">
+                                                <div class="pcsl-iteminer">
+                                                    <div class="pcsl-content">
+                                                      <div class="cat pcsl-cat"> <a class="penci-cat-name penci-cat-8" :href="formatCategoryHref(item)" rel="category tag"><span>{{ selectedCategory }}</span></a> </div>
+                                                      <div class="pcsl-title"> <a :href="formatHref(item)">{{  formatTitle(item) }}</a> </div>
+                                                      <div class="grid-post-box-meta pcsl-meta"> <span class="sl-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time></span> </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="penci-ercol-50 penci-ercol-order-2 penci-sticky-ct elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-cbfb909" data-id="cbfb909" data-element_type="column">
+                      <div class="elementor-widget-wrap elementor-element-populated">
+                        <div class="elementor-element elementor-element-db7ddde elementor-widget elementor-widget-penci-big-grid" data-id="db7ddde" data-element_type="widget" data-widget_type="penci-big-grid.default">
+                            <div class="elementor-widget-container">
+                              <div class="penci-clearfix penci-biggrid-wrapper penci-grid-col-2 penci-grid-mcol-1 penci-bgrid-based-post penci-bgrid-style-1 pcbg-ficonpo-top-right pcbg-reiconpo-top-left penci-bgrid-content-below pencibg-imageh-none pencibg-texth-none pencibg-textani-movetop textop">
+                                  <div class="penci-clearfix penci-biggrid penci-bgstyle-1 penci-bgel">
+                                    <div class="penci-biggrid-inner default">
+                                        <div class="penci-clearfix penci-biggrid-data penci-dflex">
+                                          <div class="penci-bgitem"  v-for="item in results.slice(4, 9)" :key="item">
+                                              <div class="penci-bgitin">
+                                                <div class="penci-bgmain">
+                                                    <div class="pcbg-thumb">
+                                                      <div class="pcbg-thumbin">
+                                                          <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item)"></a>
+                                                          <div class="penci-image-holder penci-lazy lazyloaded pcloaded" :data-bgset="formatImage(item)" :data_bg_hidpi="formatImage(item)" data-sizes="(max-width: 767px) 585px, 585px" data-ll-status="loaded" :style="formatBgImage(item)"> </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="pcbg-content">
+                                                      <div class="pcbg-content-flex">
+                                                          <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item)"></a>
+                                                          <div class="pcbg-content-inner bgcontent-block">
+                                                            <a href="" title="" class="pcbg-bgoverlaytext item-hover"></a>
+                                                            <div class="pcbg-heading item-hover">
+                                                                <h3 class="pcbg-title"> <a :href="formatHref(item)"> {{ formatTitle(item) }}</a> </h3>
+                                                            </div>
+                                                            <div class="grid-post-box-meta pcbg-meta item-hover">
+                                                                <div class="pcbg-meta-desc"> <span class="bg-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{  formatTimeSince(item) }}</time></span> </div>
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+
+                                        </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </section>
+          </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script lang="ts">
+  import {formatHref, formatTitle, formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage} from '../assets/js/utilities.js'
+
+  export default {
+    name: 'CategoryLeft',
+    components: {
+
+    },
+    setup() {
+
+    },
+    props: {
+      selectedCategory : {
+        type: String,
+        default: 'Finance'
+      },
+    },
+    data() {
+      return {
+        results: [] as any,
+        pageCounter: 0,
+        pageSize: 9,
+      }
+    },
+    methods: {
+      fecthContent: function() {
+        let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsByCategory?category=${this.selectedCategory.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
+        fetch(url)
+          .then(response => response.json())
+          .then(json => {
+            this.results = this.results.concat(json)
+            this.pageCounter++
+          })
+      },
+      formatHref: function(item:any) {
+        return formatHref(item)
+      },
+      formatTitle: function(item:any) {
+        return formatTitle(item)
+      },
+      formatImage: function(item:any) {
+        return formatImage(item)
+      },
+      formatAuthor: function(item:any) {
+        return formatAuthor(item)
+      },
+      formatBgImage: function(item:any) {
+        return formatBgImage(item)
+      },
+      formatCategoryHref: function(item:any) {
+        return formatCategoryHref(item)
+      },
+      formatAuthorHref: function(item:any) {
+        return formatAuthorHref(item)
+      },
+      formatPublishDate: function(item:any) {
+        return formatPublishDate(item)
+      },
+      formatTimeSince: function(item:any) {
+        return formatTimeSince(item)
+      },
+    },
+    beforeMount() {
+      this.fecthContent()
+    },
+  };
+  </script>

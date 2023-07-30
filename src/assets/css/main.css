@@ -1,0 +1,6 @@
+@import './base.css';
+@import './main-theme.css';
+
+#app {
+  margin: 0 auto;
+}
