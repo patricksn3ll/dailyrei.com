@@ -78,7 +78,9 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         return b.pubDate - a.pubDate;
     });
 
-    const result = rssBody.replace('{ITEMS_PLACE_HOLDER}', sorted.join(''))
+    const random = sorted.sort(() => Math.random() - Math.random()).slice(0, 4);
+
+    const result = rssBody.replace('{ITEMS_PLACE_HOLDER}', random.join(''))
 
     context.res = {
         headers: {
