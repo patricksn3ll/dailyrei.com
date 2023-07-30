@@ -28,7 +28,7 @@
                                                 <a :href="formatCategoryHref(item)" :title="formatTitle(item)" class="pcbg-bgoverlaytext item-hover"></a>
                                                 <div class="pcbg-above item-hover"> <span class="cat pcbg-sub-title"> <a class="penci-cat-name penci-cat-8" :href="formatCategoryHref(item)" rel="category tag"><span>{{ item.categroy }}</span></a> </span> </div>
                                                 <div class="pcbg-heading item-hover">
-                                                    <h3 class="pcbg-title"> <a :href="formatHref(item)">{{ formatTitle(item) }}</a> </h3>
+                                                    <h3 class="pcbg-title"> <a :href="formatHref(item)">{{ formatTitle(item, 84) }}</a> </h3>
                                                 </div>
                                                 <div class="grid-post-box-meta pcbg-meta item-hover">
                                                     <div class="pcbg-meta-desc"> <span class="bg-date-author author-italic author vcard"> by <a class="author-url url fn n" :href="formatAuthorHref(item)">{{ formatAuthor(item) }}</a> </span> <span class="bg-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time></span> </div>
@@ -64,7 +64,7 @@
                                     <div class="pcsl-iteminer">
                                         <div class="pcsl-thumb"> <a :href="formatHref(item)" :title="formatTitle(item)" class="penci-image-holder penci-lazy lazyloaded pcloaded" :data-bgset="formatImage(item)" data-ll-status="loaded" :style="formatBgImage(item)"> </a> </div>
                                         <div class="pcsl-content">
-                                          <div class="pcsl-title"> <a :href="formatHref(item)">{{ formatTitle(item) }}</a> </div>
+                                          <div class="pcsl-title"> <a :href="formatHref(item)">{{ formatTitle(item, 56) }}</a> </div>
                                         </div>
                                     </div>
                                   </div>
@@ -112,8 +112,9 @@ export default {
     formatHref: function(item:any) {
       return formatHref(item)
     },
-    formatTitle: function(item:any) {
-      return formatTitle(item)
+    formatTitle: function(item:any, length?: number) {
+      length = length || 200
+      return formatTitle(item, length)
     },
     formatImage: function(item:any) {
       return formatImage(item)

@@ -89,11 +89,13 @@ export default {
     formatHref: function(item:any) {
       return formatHref(item)
     },
-    formatTitle: function(item:any) {
-        return `${formatTitle(item).substring(0, titleLength)}...`
+    formatTitle: function(item:any, length?:number) {
+      length = length || 88
+      return formatTitle(item, length)
     },
-    formatDescription: function(item:any) {
-      return formatDescription(item)
+    formatDescription: function(item:any, length?:number) {
+      length = length || 200
+      return formatDescription(item, length)
     },
     formatImage: function(item:any) {
       return formatImage(item)

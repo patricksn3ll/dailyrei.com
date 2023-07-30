@@ -91,6 +91,9 @@
                                                               <div class="grid-post-box-meta pcbg-meta item-hover">
                                                                   <div class="pcbg-meta-desc"> <span class="bg-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time></span> </div>
                                                               </div>
+                                                              <div class="pcbg-pexcerpt"><p>
+                                                                {{ formatDescription(item) }}
+                                                              </p></div>
                                                             </div>
                                                         </div>
                                                       </div>
@@ -114,7 +117,7 @@
 </template>
 
 <script lang="ts">
-  import {formatHref, formatTitle, formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage} from '../assets/js/utilities.js'
+  import {formatHref, formatTitle, formatDescription, formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage} from '../assets/js/utilities.js'
 
   export default {
     name: 'CategoryRight',
@@ -150,8 +153,13 @@
       formatHref: function(item:any) {
         return formatHref(item)
       },
-      formatTitle: function(item:any) {
-        return `${formatTitle(item).substring(0, 72)}...`
+      formatTitle: function(item:any, length?:number) {
+        length = length || 72
+        return formatTitle(item, length)
+      },
+      formatDescription: function(item:any, length?:number) {
+        length = length || 200
+        return formatTitle(item, length).substring(0, length)
       },
       formatImage: function(item:any) {
         return formatImage(item)
