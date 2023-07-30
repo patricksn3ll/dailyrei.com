@@ -30,6 +30,16 @@ const httpTrigger = function (context, req) {
         const feedData = [];
         const feeds = [
             'https://www.youtube.com/feeds/videos.xml?channel_id=UCVTQunGrE3p7Oq8Owao5y_Q',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCCA5VL6_GTfTY9I-V7QUcJw',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCVWDbXqQ8cupuVpotWNt2eg',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCHYeaAH3D-wzQyDiXndSfMA',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCV6KDgJskWaEckne5aPA0aQ',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCnkmQCJ4f6rRl1PXCblppvA',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCg2F6yUPM89HPnOw98FTk9Q',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCb7zrNKp8nons_t-NjXMglg',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCskgEicue6olevPp_Yu8vAw',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UC8ZYmCweKD2x-wy8PDEiFog',
+            'https://www.youtube.com/feeds/videos.xml?channel_id=UCG98giOsUxIlXV0rNUhxLew',
         ];
         for (let i = 0; i < feeds.length; i++) {
             try {
@@ -56,6 +66,9 @@ const httpTrigger = function (context, req) {
                         feedData.push(item);
                         processedCounter++;
                     }
+                    if (processedCounter > 0) {
+                        break;
+                    }
                 }
             }
             catch (e) {
@@ -66,7 +79,8 @@ const httpTrigger = function (context, req) {
         const sorted = feedData.sort((a, b) => {
             return b.pubDate - a.pubDate;
         });
-        const result = rssBody.replace('{ITEMS_PLACE_HOLDER}', sorted.join(''));
+        const random = sorted.sort(() => Math.random() - Math.random()).slice(0, 4);
+        const result = rssBody.replace('{ITEMS_PLACE_HOLDER}', random.join(''));
         context.res = {
             headers: {
                 'Content-Type': 'application/rss+xml'
