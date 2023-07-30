@@ -33,7 +33,7 @@
                                                 <div class="pcsl-iteminer">
                                                     <div class="pcsl-content">
                                                       <div class="cat pcsl-cat"> <a class="penci-cat-name penci-cat-8" :href="formatCategoryHref(item)" rel="category tag"><span>{{ selectedCategory }}</span></a> </div>
-                                                      <div class="pcsl-title"> <a :href="formatHref(item)">{{  formatTitle(item) }}</a> </div>
+                                                      <div class="pcsl-title"> <a :href="formatHref(item)">{{  formatTitle(item, 200) }}</a> </div>
                                                       <div class="grid-post-box-meta pcsl-meta"> <span class="sl-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time></span> </div>
                                                     </div>
                                                 </div>
@@ -135,8 +135,9 @@
       formatHref: function(item:any) {
         return formatHref(item)
       },
-      formatTitle: function(item:any) {
-        return `${formatTitle(item).substring(0, 72)}...`
+      formatTitle: function(item:any, length?:number) {
+        length = length || 78
+        return formatTitle(item, length)
       },
       formatImage: function(item:any) {
         return formatImage(item)

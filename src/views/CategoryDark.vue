@@ -260,8 +260,9 @@
       formatHref: function(item:any) {
         return formatHref(item)
       },
-      formatTitle: function(item:any) {
-        return `${formatTitle(item).substring(0, titleLength)}...`
+      formatTitle: function(item:any, length?:number) {
+         length = length || 82
+        return `${formatTitle(item, length).substring(0, titleLength)}...`
       },
       formatImage: function(item:any) {
         return formatImage(item)

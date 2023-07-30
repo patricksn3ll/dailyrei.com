@@ -47,13 +47,13 @@
                                                 <div class="penci-bgmain">
                                                     <div class="pcbg-thumb">
                                                       <div class="pcbg-thumbin">
-                                                          <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item)"></a>
+                                                          <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item, 500)"></a>
                                                           <div class="penci-image-holder penci-lazy lazyloaded pcloaded" :data-bgset="formatImage(item)" :data_bg_hidpi="formatImage(item)" data-sizes="(max-width: 767px) 585px, 585px" data-ll-status="loaded" :style="formatBgImage(item)"> </div>
                                                       </div>
                                                     </div>
                                                     <div class="pcbg-content">
                                                       <div class="pcbg-content-flex">
-                                                          <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item)"></a>
+                                                          <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item, 500)"></a>
                                                           <div class="pcbg-content-inner bgcontent-block">
                                                             <a href="" title="" class="pcbg-bgoverlaytext item-hover"></a>
                                                             <div class="pcbg-heading item-hover">
@@ -90,7 +90,7 @@
                                           <div class="pcsl-item" v-for="item in results.slice(2, 6)" :key="item">
                                               <div class="pcsl-itemin">
                                                 <div class="pcsl-iteminer">
-                                                    <div class="pcsl-thumb"> <a :href="formatHref(item)" :title="formatTitle(item)" class="penci-image-holder penci-lazy lazyloaded pcloaded" :data-bgset="formatImage(item)" data-ll-status="loaded" :style="formatBgImage(item)"> </a> </div>
+                                                    <div class="pcsl-thumb"> <a :href="formatHref(item)" :title="formatTitle(item, 500)" class="penci-image-holder penci-lazy lazyloaded pcloaded" :data-bgset="formatImage(item)" data-ll-status="loaded" :style="formatBgImage(item)"> </a> </div>
                                                     <div class="pcsl-content">
                                                       <div class="pcsl-title"> <a :href="formatHref(item)">{{  formatTitle(item) }}</a> </div>
                                                       <div class="grid-post-box-meta pcsl-meta"> <span class="sl-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{  formatTimeSince(item) }}</time></span> </div>
@@ -164,11 +164,13 @@
       formatHref: function(item:any) {
         return formatHref(item)
       },
-      formatTitle: function(item:any) {
-        return `${formatTitle(item).substring(0, titleLength)}...`
+      formatTitle: function(item:any, length?:number) {
+        length = length || 72
+        return formatTitle(item, length)
       },
-      formatDescription: function(item:any) {
-        return formatDescription(item).substring(0, descriptionLength)
+      formatDescription: function(item:any, length?:number) {
+        length = length || 400
+        return formatDescription(item, length)
       },
       formatImage: function(item:any) {
         return formatImage(item)

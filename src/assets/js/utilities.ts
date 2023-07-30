@@ -48,23 +48,28 @@ export function formatBgImage(item: any) {
   return `background-image: url('${item?.image?.replaceAll('"', '')}');`
 };
 
-export function formatTitle(item: any) {
+export function formatTitle(item: any, length: number) {
   if (item?.metadata_title)  {
-    return item?.metadata_title?.replaceAll('"', '')
+    const dots = item?.metadata_title?.replaceAll('"', '').length > length ? '...' : ''
+    return `${item?.metadata_title?.replaceAll('"', '').substring(0, length)}${dots}`
   }
-  return item?.title?.replaceAll('"', '')
+  const dots = item?.title?.replaceAll('"', '').length > length ? '...' : ''
+  return `${item?.title?.replaceAll('"', '').substring(0, length)}${dots}`
 };
 
-export function formatDescription(item: any) {
+export function formatDescription(item: any, length: number) {
   if (item?.abstract_summary && item?.abstract_summary.documents?.length > 0) {
-    return item?.abstract_summary?.documents[0].summaries[0].text.replaceAll('"', '')
+    const dots = item?.abstract_summary?.documents[0].summaries[0].text.replaceAll('"', '').length > length ? '...' : ''
+    return `${item?.abstract_summary?.documents[0].summaries[0].text.replaceAll('"', '').substring(0, length)}${dots}`
   }
 
   if (item?.metadata_description) {
-    return item?.metadata_description?.replaceAll('"', '')
+    const dots = item?.metadata_description?.replaceAll('"', '').length > length ? '...' : ''
+    return `${item?.metadata_description?.replaceAll('"', '').substring(0, length)}${dots}`
   }
 
-  return item?.summary?.replaceAll('"', '')
+  const dots = item?.summary?.replaceAll('"', '').length > length ? '...' : ''
+  return `${item?.summary?.replaceAll('"', '').substring(0, length)}${dots}`
 };
 
 export function formatPublishDate(item: any) {
