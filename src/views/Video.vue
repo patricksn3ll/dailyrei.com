@@ -82,7 +82,7 @@ export default {
   methods: {
     fecthContent: function() {
       //let url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCVTQunGrE3p7Oq8Owao5y_Q'
-      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetVideoFeeds?domain=${import.meta.env.VITE_DOMAIN}&offset=0&limit=7&score=.8`
+      let url = `${import.meta.env.VITE_API_BASE_URL}/api/videos`
       fetch(url)
           .then(response => response.json())
           .then(json => {
