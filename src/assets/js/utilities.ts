@@ -1,5 +1,8 @@
 import moment from 'moment'
 
+export const titleLength = 72;
+export const descriptionLength = 180;
+
 export function formatHref(item: any) {
   return `/article/${item?.slug?.replaceAll('"', '')}`
 };

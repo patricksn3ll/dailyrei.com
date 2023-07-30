@@ -28,7 +28,7 @@
 
 
 <script lang="ts">
-import {formatHref, formatTitle, formatCategory , formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage, formatDescription} from '../assets/js/utilities.js'
+import {formatHref, formatTitle, formatCategory , formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage, formatDescription, titleLength} from '../assets/js/utilities.js'
 
 export default {
   name: 'CategorySection',
@@ -90,7 +90,7 @@ export default {
       return formatHref(item)
     },
     formatTitle: function(item:any) {
-      return formatTitle(item)
+        return `${formatTitle(item).substring(0, titleLength)}...`
     },
     formatDescription: function(item:any) {
       return formatDescription(item)

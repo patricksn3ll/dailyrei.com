@@ -55,7 +55,7 @@
                                   <div class="penci-clearfix penci-biggrid penci-bgstyle-1 penci-bgel">
                                     <div class="penci-biggrid-inner default">
                                         <div class="penci-clearfix penci-biggrid-data penci-dflex">
-                                          <div class="penci-bgitem"  v-for="item in results.slice(4, 9)" :key="item">
+                                          <div class="penci-bgitem"  v-for="item in results.slice(4, 8)" :key="item">
                                               <div class="penci-bgitin">
                                                 <div class="penci-bgmain">
                                                     <div class="pcbg-thumb">
@@ -136,7 +136,7 @@
         return formatHref(item)
       },
       formatTitle: function(item:any) {
-        return formatTitle(item)
+        return `${formatTitle(item).substring(0, 72)}...`
       },
       formatImage: function(item:any) {
         return formatImage(item)
