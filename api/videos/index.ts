@@ -42,11 +42,12 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
             for (let x = 0; x < data.items.length; x++) {
                 const existingItem = await getFeedItemUrl(data.items[x].link);
-                const pubDate = new Date(data.items[x].updated);
+                console.log(data.items[x])
+                const pubDate = new Date(data.items[x].pubDate);
                 let startDate = new Date();
-                startDate.setDate(startDate.getDate() -14);
+                startDate.setDate(startDate.getDate() -30);
 
-                if (pubDate >= startDate  && existingItem === null) {
+                if (pubDate >= startDate) {
                     const categories = (data.items[x].categories?.length) ? data.items[x].categories?.map(c => `<category><![CDATA[${c}]]></category>`).join('') : '';
                     const item = `<item>
                                     <title><![CDATA[${data.items[x].title}]]></title>

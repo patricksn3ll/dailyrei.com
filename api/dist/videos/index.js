@@ -48,10 +48,11 @@ const httpTrigger = function (context, req) {
                 const data = yield parser.parseURL(feed);
                 for (let x = 0; x < data.items.length; x++) {
                     const existingItem = yield getFeedItemUrl(data.items[x].link);
-                    const pubDate = new Date(data.items[x].updated);
+                    console.log(data.items[x]);
+                    const pubDate = new Date(data.items[x].pubDate);
                     let startDate = new Date();
-                    startDate.setDate(startDate.getDate() - 14);
-                    if (pubDate >= startDate && existingItem === null) {
+                    startDate.setDate(startDate.getDate() - 30);
+                    if (pubDate >= startDate) {
                         const categories = ((_a = data.items[x].categories) === null || _a === void 0 ? void 0 : _a.length) ? (_b = data.items[x].categories) === null || _b === void 0 ? void 0 : _b.map(c => `<category><![CDATA[${c}]]></category>`).join('') : '';
                         const item = `<item>
                                     <title><![CDATA[${data.items[x].title}]]></title>
