@@ -78,7 +78,7 @@
                                             <div class="penci-smalllist pcsl-wrapper pwsl-id-default">
                                                 <div class="pcsl-inner penci-clearfix pcsl-grid pcsl-imgpos-left pcsl-col-1 pcsl-tabcol-1 pcsl-mobcol-1">
 
-                                                    <div class="pcsl-item pcsl-nothumb" v-for="item in results" :key="item">
+                                                    <div class="pcsl-item pcsl-nothumb" v-for="item in results.slice(0, 4)" :key="item">
                                                         <div class="pcsl-itemin">
                                                             <div class="pcsl-iteminer">
                                                                 <div class="pcsl-content">
