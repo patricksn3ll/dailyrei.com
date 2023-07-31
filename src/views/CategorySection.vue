@@ -13,7 +13,7 @@
                 <div class="grid-post-box-meta"> <span class="otherl-date-author author-italic author vcard">by <a class="author-url url fn n" :href="formatAuthorHref(item)">{{ formatAuthor(item) }}</a> </span> <span class="otherl-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time></span> </div>
             </div>
             <div class="item-content entry-content">
-                <p>{{  formatDescription(item) }}</p>
+                <p>{{ formatDescription(item) }}</p>
             </div>
         </div>
     </article>
