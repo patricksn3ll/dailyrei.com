@@ -14,7 +14,7 @@
                                     <div class="penci-block-vc penci-text-editor">
                                         <div class="penci-block_content">
                                             <div class="elementor-text-editor elementor-clearfix">
-                                                <p><strong>Soledad</strong> is the Best Newspaper and Magazine WordPress Theme with tons of options and demos ready to import. This theme is perfect for blogs and excellent for online stores, news, magazine or review sites. Buy Soledad now!</p>
+                                                <p><strong>DailyREI</strong> Real Estate News and Industry Trends. The latest news, trends, and developments in the real estate industry. <strong>DailyREI</strong> covers topics such as finance and investing, policy and legal issues, sustainability initiatives, and emerging market trends.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                             <div class="penci-smalllist pcsl-wrapper pwsl-id-default">
                                                 <div class="pcsl-inner penci-clearfix pcsl-grid pcsl-imgpos-left pcsl-col-1 pcsl-tabcol-1 pcsl-mobcol-1">
 
-                                                    <div class="pcsl-item pcsl-nothumb" v-for="item in results" :key="item">
+                                                    <div class="pcsl-item pcsl-nothumb" v-for="item in results.slice(0, 3)" :key="item">
                                                         <div class="pcsl-itemin">
                                                             <div class="pcsl-iteminer">
                                                                 <div class="pcsl-content">
