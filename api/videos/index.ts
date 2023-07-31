@@ -67,13 +67,11 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
     const random = sorted.sort(() => Math.random() - Math.random()).slice(0, 4);
 
-    const result = rssBody.replace('{ITEMS_PLACE_HOLDER}', random.join(''))
-
     context.res = {
         headers: {
             'Content-Type': 'application/rss+xml'
         },
-        body: `${result}`
+        body: `${JSON.stringify(random)}`
     };
 };
 

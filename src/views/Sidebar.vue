@@ -45,13 +45,14 @@
                     }
                 })();
             </script> -->
-            <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-790" method="post" data-id="790" data-name="Form">
+            <form v-on:submit.prevent="signUp" id="mc4wp-form-1" class="mc4wp-form mc4wp-form-790" method="post" data-id="790" data-name="Form">
                 <div class="mc4wp-form-fields">
                     <p class="mdes">Subscribe our newsletter for latest news around the world. Let's stay updated!</p>
-                    <p class="mname"><input type="text" name="NAME" placeholder="Name..."></p>
-                    <p class="memail"><input type="email" id="mc4wp_email" name="EMAIL" placeholder="Email..."></p>
+                    <p class="mname"><input type="text" v-model="name" name="NAME" placeholder="Name..."></p>
+                    <p class="memail"><input type="email" v-model="email" id="mc4wp_email" name="EMAIL" placeholder="Email..."></p>
                     <p class="msubmit"><input type="submit" value="Subscribe"></p>
-                </div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" tabindex="-1" autocomplete="off"></label><input type="hidden" name="_mc4wp_timestamp" value="1690725841"><input type="hidden" name="_mc4wp_form_id" value="790"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1">
+                </div>
+                <label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" tabindex="-1" autocomplete="off"></label>
                 <div class="mc4wp-response"></div>
             </form>
         </aside>
@@ -80,6 +81,10 @@ export default {
   name: 'Sidebar',
   data() {
     return {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
       results: [] as any[]
     };
   },
@@ -131,6 +136,26 @@ export default {
     formatTimeSince: function(item:any) {
       return formatTimeSince(item)
     },
+    signUp: function(e:any) {
+      console.log(`signUp : ${this.name} ${this.subject} ${this.email} ${this.message}`)
+
+      this.subject = `${import.meta.env.VITE_WWW_BASE_URL} signup`
+      this.message = `Please add me to your newsletter: ${this.name} ${this.email}`
+
+      let url = `${import.meta.env.VITE_WWW_BASE_URL}/api/mail?name=${this.name}&subject=${this.subject}&email=${this.email}&message=${this.message}`
+      fetch(url)
+          .then(response => response.json())
+          .then(json => {
+            this.name = '';
+            this.email = '';
+            this.subject = '';
+            this.message = '';
+            alert('You have been signed up. Thank you!')
+          }).catch(err => {
+            //console.log(err)
+          })
+        e.preventDefault();
+    }
   },
   beforeMount() {
     this.fecthContent()
