@@ -101,16 +101,16 @@ export function formatTimeSince(item: any) {
   interval = seconds / 3600;
   if (interval > 1) {
     s = (Math.floor(interval) == 1) ? "" : "s";
-    return Math.floor(interval) + " hour" + s;
+    return Math.floor(interval) + " hour" + s + " ago";
   }
 
   interval = seconds / 60;
   if (interval > 1) {
     s = (Math.floor(interval) == 1) ? "" : "s";
-    return Math.floor(interval) + " min" + s;
+    return Math.floor(interval) + " min" + s + " ago";
   }
 
-  return Math.floor(seconds) + " second" + s;
+  return Math.floor(seconds) + " second" + s + " ago";
 };
 
 export function formatIndex(results: any, item: any) {
