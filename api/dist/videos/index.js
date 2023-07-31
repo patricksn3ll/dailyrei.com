@@ -48,6 +48,7 @@ const httpTrigger = function (context, req) {
                 const data = yield parser.parseURL(feed);
                 for (let x = 0; x < data.items.length; x++) {
                     const existingItem = yield getFeedItemUrl(data.items[x].link);
+                    console.log(data.items[x]);
                     const pubDate = new Date(data.items[x].pubDate);
                     let startDate = new Date();
                     startDate.setDate(startDate.getDate() - 30);
