@@ -1,19 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import Parser = require('rss-parser');
 
-const rssBody = `<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
-                        xmlns:content="http://purl.org/rss/1.0/modules/content/"
-                        xmlns:atom="http://www.w3.org/2005/Atom"
-                        version="2.0">
-                    <channel>
-                        <title>NewsCluster Root Feed</title>
-                        <description>NewsCluster Root Feed</description>
-                        <atom:link href="${process.env.API_ENDPOINT}" rel="self"/>
-                        <link>${process.env.API_ENDPOINT}</link>
-                        {ITEMS_PLACE_HOLDER}
-                    </channel>
-                </rss>`
-
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
     const parser = new Parser();
@@ -49,16 +36,15 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
                 if (pubDate >= startDate) {
                     const categories = (data.items[x].categories?.length) ? data.items[x].categories?.map(c => `<category><![CDATA[${c}]]></category>`).join('') : '';
-                    const item = `<item>
-                                    <title><![CDATA[${data.items[x].title}]]></title>
-                                    <description><![CDATA[${data.items[x].summary}]]></description>
-                                    <link><![CDATA[${data.items[x].link}]]></link>
-                                    <pubDate>${data.items[x].pubDate}</pubDate>
-                                    <guid><![CDATA[${data.items[x].guid}]]></guid>
-                                    <dc:creator><![CDATA[${data.items[x].creator}]]></dc:creator>
-                                    ${categories}
-                                </item>
-                                `
+                    const item = {
+                        title: data.items[x].title,
+                        description: data.items[x].description,
+                        link: data.items[x].link,
+                        pubDate: data.items[x].pubDate,
+                        guid: data.items[x].guid,
+                        creator: data.items[x].creator,
+                        categories: categories
+                    }
 
                     feedData.push(item)
                     processedCounter++;

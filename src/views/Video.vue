@@ -63,7 +63,6 @@
 
 <script lang="ts">
 import {formatHref, formatTitle, formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage, formatCategory} from '../assets/js/utilities.js'
-import{ parseString } from 'xml2js';
 
 export default {
   name: 'Video',
@@ -87,7 +86,7 @@ export default {
       fetch(url)
           .then(response => response.json())
           .then(json => {
-            this.results = parseString(json)
+            this.results = json
             console.log(this.results)
           })
     },
