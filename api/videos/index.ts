@@ -42,7 +42,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
             for (let x = 0; x < data.items.length; x++) {
                 const existingItem = await getFeedItemUrl(data.items[x].link);
-                const pubDate = new Date(data.items[x].pubDate);
+                const pubDate = new Date(data.items[x].updated);
                 let startDate = new Date();
                 startDate.setDate(startDate.getDate() -14);
 
