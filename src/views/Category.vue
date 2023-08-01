@@ -17,7 +17,8 @@
   <div class="container penci_sidebar right-sidebar" style="transform: none;">
     <div id="main" class="penci-layout-list penci-main-sticky-sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
       <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; top: 80px; left: 77.4025px;">
-        <CategorySection :category="selectedCategory" :showLoadMore="true"  />
+        <CategorySection v-if="selectedCategory != 'video'" :category="selectedCategory" :showLoadMore="true"  />
+        <CategoryVideoSection v-if="selectedCategory == 'video'" :category="selectedCategory" :showLoadMore="true"  />
       </div>
     </div>
 
@@ -31,6 +32,7 @@
   import Sidebar from "./Sidebar.vue"
   import WidgetArea from "./WidgetArea.vue"
   import CategorySection from "./CategorySection.vue"
+  import CategoryVideoSection from "./CategoryVideoSection.vue"
 
 
   export default {
@@ -38,7 +40,8 @@
     components: {
       Sidebar,
       WidgetArea,
-      CategorySection
+      CategorySection,
+      CategoryVideoSection
     },
     setup() {
 
