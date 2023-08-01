@@ -44,7 +44,6 @@ function parseRss() {
                 yield fetch(feeds[i])
                     .then(response => response.text())
                     .then(data => {
-                    //const json = parser.toJson(data)
                     const json = (0, xml2json_1.toJson)(data);
                     const obj = JSON.parse(json);
                     let entries = obj["feed"]["entry"];
@@ -56,7 +55,7 @@ function parseRss() {
                     .catch(err => console.log(`Error fetching feed : ${err}`));
             }
             catch (e) {
-                console.log(`Error parsing feed : ${e}`);
+                results.push(`Error parsing feed : ${e}`);
             }
         }
         return results;

@@ -34,7 +34,6 @@ async function parseRss() {
             await fetch(feeds[i])
                 .then(response => response.text())
                 .then(data => {
-                    //const json = parser.toJson(data)
                     const json = toJson(data)
                     const obj = JSON.parse(json);
                     let entries = obj["feed"]["entry"]
@@ -45,7 +44,7 @@ async function parseRss() {
                 })
                 .catch(err => console.log(`Error fetching feed : ${err}`))
         } catch (e) {
-            console.log(`Error parsing feed : ${e}`)
+            results.push(`Error parsing feed : ${e}`)
         }
     }
 
