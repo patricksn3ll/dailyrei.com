@@ -14,7 +14,8 @@ const xml2json_1 = require("xml2json");
 const httpTrigger = function (context, req) {
     return __awaiter(this, void 0, void 0, function* () {
         context.log('HTTP trigger function processed a request.');
-        const json = yield parseRss();
+        const count = parseInt(req.query.count || "5");
+        const json = yield parseRss(count);
         context.res = {
             headers: {
                 'Content-Type': 'application/rss+xml'
@@ -23,7 +24,7 @@ const httpTrigger = function (context, req) {
         };
     });
 };
-function parseRss() {
+function parseRss(count) {
     return __awaiter(this, void 0, void 0, function* () {
         const axios = require('axios');
         const feeds = [
@@ -64,7 +65,7 @@ function parseRss() {
             catch (e) {
                 results.push(`Error parsing feed : ${e}`);
             }
-            if (results.length > 5) {
+            if (results.length > count) {
                 break;
             }
         }

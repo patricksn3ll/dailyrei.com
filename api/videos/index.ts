@@ -4,7 +4,8 @@ import { toJson } from 'xml2json';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
-    const json = await parseRss()
+    const count = parseInt(req.query.count || "5");
+    const json = await parseRss(count)
     context.res = {
         headers: {
             'Content-Type': 'application/rss+xml'
@@ -13,7 +14,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     };
 };
 
-async function parseRss() {
+async function parseRss(count:number) {
     const axios = require('axios');
     const feeds = [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCVTQunGrE3p7Oq8Owao5y_Q',
@@ -53,7 +54,7 @@ async function parseRss() {
             results.push(`Error parsing feed : ${e}`)
         }
 
-        if (results.length > 5) {
+        if (results.length > count) {
             break
         }
     }
