@@ -1,5 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { parser } from 'xml2json';
+//import xml2json from '@hendt/xml2json';
+import { toJson } from 'xml2json';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
@@ -32,10 +33,12 @@ async function parseRss() {
         try {
             await fetch(feeds[i])
                 .then(response => response.text())
-                .then(str => parser.toJson(str))
                 .then(data => {
-                    var entries = JSON.parse(data)["feed"]["entry"];
-                    entries = entries.score(function (a, b) {
+                    //const json = parser.toJson(data)
+                    const json = toJson(data)
+                    const obj = JSON.parse(json);
+                    let entries = obj["feed"]["entry"]
+                    entries = entries.sort(function (a, b) {
                         return a["updated"] < b["updated"];
                     });
                     results.push(entries[0]["media:group"])
