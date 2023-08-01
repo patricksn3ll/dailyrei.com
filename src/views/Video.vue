@@ -24,7 +24,7 @@
                       <div class="penci-clearfix penci-biggrid penci-bgstyle-1 penci-bgel">
                         <div class="penci-biggrid-inner default">
                             <div class="penci-clearfix penci-biggrid-data penci-dflex">
-                              <div class="penci-bgitem" v-for="item in results" :key="item">
+                              <div class="penci-bgitem" v-for="item in results.slice(0, 4)" :key="item">
                                   <div class="penci-bgitin">
                                     <div class="penci-bgmain">
                                         <div class="pcbg-thumb">
