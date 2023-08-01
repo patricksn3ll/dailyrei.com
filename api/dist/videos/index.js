@@ -10,18 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Parser = require("rss-parser");
-const rssBody = `<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
-                        xmlns:content="http://purl.org/rss/1.0/modules/content/"
-                        xmlns:atom="http://www.w3.org/2005/Atom"
-                        version="2.0">
-                    <channel>
-                        <title>NewsCluster Root Feed</title>
-                        <description>NewsCluster Root Feed</description>
-                        <atom:link href="${process.env.API_ENDPOINT}" rel="self"/>
-                        <link>${process.env.API_ENDPOINT}</link>
-                        {ITEMS_PLACE_HOLDER}
-                    </channel>
-                </rss>`;
 const httpTrigger = function (context, req) {
     var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
@@ -54,16 +42,15 @@ const httpTrigger = function (context, req) {
                     startDate.setDate(startDate.getDate() - 30);
                     if (pubDate >= startDate) {
                         const categories = ((_a = data.items[x].categories) === null || _a === void 0 ? void 0 : _a.length) ? (_b = data.items[x].categories) === null || _b === void 0 ? void 0 : _b.map(c => `<category><![CDATA[${c}]]></category>`).join('') : '';
-                        const item = `<item>
-                                    <title><![CDATA[${data.items[x].title}]]></title>
-                                    <description><![CDATA[${data.items[x].summary}]]></description>
-                                    <link><![CDATA[${data.items[x].link}]]></link>
-                                    <pubDate>${data.items[x].pubDate}</pubDate>
-                                    <guid><![CDATA[${data.items[x].guid}]]></guid>
-                                    <dc:creator><![CDATA[${data.items[x].creator}]]></dc:creator>
-                                    ${categories}
-                                </item>
-                                `;
+                        const item = {
+                            title: data.items[x].title,
+                            description: data.items[x].description,
+                            link: data.items[x].link,
+                            pubDate: data.items[x].pubDate,
+                            guid: data.items[x].guid,
+                            creator: data.items[x].creator,
+                            categories: categories
+                        };
                         feedData.push(item);
                         processedCounter++;
                     }
@@ -81,12 +68,11 @@ const httpTrigger = function (context, req) {
             return b.pubDate - a.pubDate;
         });
         const random = sorted.sort(() => Math.random() - Math.random()).slice(0, 4);
-        const result = rssBody.replace('{ITEMS_PLACE_HOLDER}', random.join(''));
         context.res = {
             headers: {
                 'Content-Type': 'application/rss+xml'
             },
-            body: `${result}`
+            body: `${JSON.stringify(random)}`
         };
     });
 };
