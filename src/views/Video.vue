@@ -30,8 +30,8 @@
                                         <div class="pcbg-thumb">
                                           <a href="" class="icon-post-format" aria-label="Icon"><i class="penci-faicon fa fa-play"></i></a>
                                           <div class="pcbg-thumbin">
-                                              <a class="pcbg-bgoverlay" href="" title=""></a>
-                                              <div class="penci-image-holder penci-lazy lazyloaded pcloaded" data-bgset="" data_bg_hidpi="" data-sizes="(max-width: 767px) 585px, 585px" data-ll-status="loaded" style=""> </div>
+                                              <a class="pcbg-bgoverlay" :href="formatHref(item)" :title="formatTitle(item)"></a>
+                                              <div class="penci-image-holder penci-lazy lazyloaded pcloaded" :data-bgset="formatImage(item)" :data_bg_hidpi="formatImage(item)" data-sizes="(max-width: 767px) 585px, 585px" data-ll-status="loaded" :style="formatBgImage(item)"> </div>
                                           </div>
                                         </div>
                                         <div class="pcbg-content">
@@ -91,20 +91,20 @@ export default {
           })
     },
     formatHref: function(item:any) {
-      return formatHref(item)
+      return item["media:content"]["url"]
     },
     formatTitle: function(item:any, length?:number) {
       length = length || 88
-      return formatTitle(item, length)
+      return item["media:title"].substring(0, length)
     },
     formatImage: function(item:any) {
-      return formatImage(item)
+      return item["media:thumbnail"]["url"]
     },
     formatAuthor: function(item:any) {
       return formatAuthor(item)
     },
     formatBgImage: function(item:any) {
-      return formatBgImage(item)
+      return  `background-image: url('${ item["media:thumbnail"]["url"]}');`
     },
     formatCategory: function(item:any) {
       return formatCategory(item)
