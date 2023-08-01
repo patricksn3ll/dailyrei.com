@@ -16,6 +16,7 @@
     "@hendt/xml2json": "^1.0.3",
     "@types/xml2json": "^0.11.4",
     "axios": "^1.4.0",
+    "fetch": "^1.1.0",
     "node-fetch": "^2.6.6",
     "node-html-parser": "^6.1.5",
     "rss-parser": "^3.13.0",
