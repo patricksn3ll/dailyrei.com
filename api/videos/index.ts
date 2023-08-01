@@ -14,6 +14,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 };
 
 async function parseRss() {
+    const axios = require('axios');
     const feeds = [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCVTQunGrE3p7Oq8Owao5y_Q',
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCCA5VL6_GTfTY9I-V7QUcJw',
@@ -31,9 +32,13 @@ async function parseRss() {
 
     for (let i = 0; i < feeds.length; i++) {
         try {
-            await fetch(feeds[i])
-                .then(response => response.text())
-                .then(data => {
+            const options = {
+                method: 'GET',
+                url: feeds[i],
+            }
+
+            await axios.request(options)
+                .then(async function ({ data }: { data: any }) {
                     const json = toJson(data)
                     const obj = JSON.parse(json);
                     let entries = obj["feed"]["entry"]
@@ -41,10 +46,15 @@ async function parseRss() {
                         return a["updated"] < b["updated"];
                     });
                     results.push(entries[0]["media:group"])
-                })
-                .catch(err => console.log(`Error fetching feed : ${err}`))
+                }).catch(function (error: any) {
+                    console.log(`Error fetching feed : ${error}`)
+                });
         } catch (e) {
             results.push(`Error parsing feed : ${e}`)
+        }
+
+        if (results.length > 5) {
+            break
         }
     }
 

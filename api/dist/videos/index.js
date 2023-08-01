@@ -25,6 +25,7 @@ const httpTrigger = function (context, req) {
 };
 function parseRss() {
     return __awaiter(this, void 0, void 0, function* () {
+        const axios = require('axios');
         const feeds = [
             'https://www.youtube.com/feeds/videos.xml?channel_id=UCVTQunGrE3p7Oq8Owao5y_Q',
             'https://www.youtube.com/feeds/videos.xml?channel_id=UCCA5VL6_GTfTY9I-V7QUcJw',
@@ -41,21 +42,30 @@ function parseRss() {
         let results = [];
         for (let i = 0; i < feeds.length; i++) {
             try {
-                yield fetch(feeds[i])
-                    .then(response => response.text())
-                    .then(data => {
-                    const json = (0, xml2json_1.toJson)(data);
-                    const obj = JSON.parse(json);
-                    let entries = obj["feed"]["entry"];
-                    entries = entries.sort(function (a, b) {
-                        return a["updated"] < b["updated"];
+                const options = {
+                    method: 'GET',
+                    url: feeds[i],
+                };
+                yield axios.request(options)
+                    .then(function ({ data }) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        const json = (0, xml2json_1.toJson)(data);
+                        const obj = JSON.parse(json);
+                        let entries = obj["feed"]["entry"];
+                        entries = entries.sort(function (a, b) {
+                            return a["updated"] < b["updated"];
+                        });
+                        results.push(entries[0]["media:group"]);
                     });
-                    results.push(entries[0]["media:group"]);
-                })
-                    .catch(err => console.log(`Error fetching feed : ${err}`));
+                }).catch(function (error) {
+                    console.log(`Error fetching feed : ${error}`);
+                });
             }
             catch (e) {
                 results.push(`Error parsing feed : ${e}`);
+            }
+            if (results.length > 5) {
+                break;
             }
         }
         return results;
