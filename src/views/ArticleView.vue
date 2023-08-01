@@ -39,13 +39,22 @@
                         </div>
                     </div>
 
+                    <a class="penci-ajax-more-button" :href="item?.primaryLink" target="_blank" style="hand:cursor">
+                    <span class="ajax-more-text">Read Original Article</span></a>
+
+                    <div class="post-tags">
+                        <a :href="formatTagHref(tag)" rel="tag" v-for="tag in item?.categories" :key="tag">{{ decodeURI(tag) }}</a>
+                    </div>
+
                     <div class="sstyle-style-1 tags-share-box tags-share-box-top single-post-share tags-share-box-s2 tags-share-box-2_3 social-align-center disable-btnplus post-share" style="opacity: 1;">
                       <span class="penci-social-share-text"><i class="penciicon-sharing"></i>Share</span>
                       <a class="new-ver-share post-share-item post-share-facebook" aria-label="Share on Facebook" target="_blank" rel="noreferrer" :href="formatShare(item, 0)"><i class="penci-faicon fa fa-facebook"></i><span class="dt-share">Facebook</span></a>
                       <a class="new-ver-share post-share-item post-share-twitter" aria-label="Share on Twitter" target="_blank" rel="noreferrer" :href="formatShare(item, 1)"><i class="penci-faicon fa fa-twitter"></i><span class="dt-share">Twitter</span></a>
                       <a class="new-ver-share post-share-item post-share-pinterest" aria-label="Pin to Pinterest" data-pin-do="none" rel="noreferrer" target="_blank" :href="formatShare(item, 2)"><i class="penci-faicon fa fa-pinterest"></i><span class="dt-share">Pinterest</span></a>
-                      <a class="new-ver-share post-share-item post-share-email" target="_blank" aria-label="Share via Email" rel="noreferrer" :href="formatShare(item, 3)"><i class="penci-faicon fa fa-envelope"></i><span class="dt-share">Email</span></a><a class="post-share-item post-share-expand" href="#" aria-label="Share Expand"><i class="penci-faicon penciicon-add"></i></a>
+                      <a class="new-ver-share post-share-item post-share-email" target="_blank" aria-label="Share via Email" rel="noreferrer" :href="formatShare(item, 3)"><i class="penci-faicon fa fa-envelope"></i><span class="dt-share">Email</span></a>
+                      <a class="post-share-item post-share-expand" href="#" aria-label="Share Expand"><i class="penci-faicon penciicon-add"></i></a>
                     </div>
+
 
                     <Related />
 
