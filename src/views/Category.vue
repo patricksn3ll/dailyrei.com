@@ -32,6 +32,7 @@
   import Sidebar from "./Sidebar.vue"
   import WidgetArea from "./WidgetArea.vue"
   import CategorySection from "./CategorySection.vue"
+  import CategoryVideoSection from "./CategoryVideoSection.vue"
 
 
   export default {
@@ -39,7 +40,8 @@
     components: {
       Sidebar,
       WidgetArea,
-      CategorySection
+      CategorySection,
+      CategoryVideoSection
     },
     setup() {
 
