@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//import xml2json from '@hendt/xml2json';
 const xml2json_1 = require("xml2json");
 const httpTrigger = function (context, req) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -42,10 +43,12 @@ function parseRss() {
             try {
                 yield fetch(feeds[i])
                     .then(response => response.text())
-                    .then(str => xml2json_1.parser.toJson(str))
                     .then(data => {
-                    var entries = JSON.parse(data)["feed"]["entry"];
-                    entries = entries.score(function (a, b) {
+                    //const json = parser.toJson(data)
+                    const json = (0, xml2json_1.toJson)(data);
+                    const obj = JSON.parse(json);
+                    let entries = obj["feed"]["entry"];
+                    entries = entries.sort(function (a, b) {
                         return a["updated"] < b["updated"];
                     });
                     results.push(entries[0]["media:group"]);
