@@ -36,7 +36,7 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
     },
     methods: {
       fecthContent: function() {
-        const url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsFlagged?&domain=${import.meta.env.VITE_DOMAIN}&offset=0&limit=6&score=0.1`
+        const url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=flagged&domain=${import.meta.env.VITE_DOMAIN}&offset=0&limit=6&score=0.1`
         fetch(url)
             .then(response => response.json())
             .then(json => {
