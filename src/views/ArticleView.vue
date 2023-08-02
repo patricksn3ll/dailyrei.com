@@ -102,7 +102,7 @@
     },
     methods: {
       fecthContent: function() {
-        const url = (this.guid) ? `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemByGuid?guid=${this.guid}&domain=${import.meta.env.VITE_DOMAIN}` : `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=slug&slug=${this.slug}&domain=${import.meta.env.VITE_DOMAIN}`
+        const url = (this.guid) ? `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemBy?filter=guid&guid=${this.guid}&domain=${import.meta.env.VITE_DOMAIN}` : `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=slug&slug=${this.slug}&domain=${import.meta.env.VITE_DOMAIN}`
         fetch(url)
             .then(response => response.json())
             .then(json => {
