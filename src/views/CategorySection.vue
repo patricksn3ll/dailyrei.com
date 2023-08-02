@@ -71,12 +71,12 @@ export default {
   },
   methods: {
     fecthContent: function() {
-      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsByCategory?category=${this.category.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
+      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=category&category=${this.category.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
       if (this.author != "") {
-        url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsByAuthor?author=${this.author.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
+        url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=author&author=${this.author.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
       }
       if (this.tag != "") {
-        url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsByTag?tag=${this.tag.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
+        url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=tag&tag=${this.tag.toLocaleLowerCase()}&domain=${import.meta.env.VITE_DOMAIN}&offset=${this.pageSize * this.pageCounter}&limit=${this.pageSize}&score=.1`
       }
 
      fetch(url)

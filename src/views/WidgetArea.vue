@@ -156,7 +156,7 @@ setup() {
 },
 methods: {
   fecthContent: function() {
-    let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsByScore?score=.9&domain=${import.meta.env.VITE_DOMAIN}&offset=0&limit=6`
+    let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=score&score=.9&domain=${import.meta.env.VITE_DOMAIN}&offset=0&limit=6`
     fetch(url)
         .then(response => response.json())
         .then(json => {
