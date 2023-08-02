@@ -38,7 +38,7 @@
                                           <div class="pcbg-content-flex">
                                               <a class="pcbg-bgoverlay active-overlay" :href="formatHref(item)" :title="formatTitle(item)"></a>
                                               <div class="pcbg-content-inner bgcontent-block">
-                                                <a :href="formatHref(item)" :title="formatTitle(item)" class="pcbg-bgoverlaytext item-hover"></a>
+                                                <a :href="formatHref(item)" target="_blank" :title="formatTitle(item)" class="pcbg-bgoverlaytext item-hover"></a>
                                                 <div class="pcbg-above item-hover"> <span class="cat pcbg-sub-title"> <a class="penci-cat-name penci-cat-9" :href="formatCategoryHref(item)" rel="category tag"><span>{{ formatCategory(item) }}</span></a> </span> </div>
                                                 <div class="pcbg-heading item-hover">
                                                     <h3 class="pcbg-title"> <a :href="formatHref(item)" > {{ formatTitle(item) }}</a> </h3>
