@@ -75,7 +75,7 @@
 
 
 <script lang="ts">
-import {formatHref, formatTitle, formatCategory , formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage, formatDescription} from '../assets/js/utilities.js'
+import {signUp, formatHref, formatTitle, formatCategory , formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage, formatDescription} from '../assets/js/utilities.js'
 
 export default {
   name: 'Sidebar',
@@ -83,8 +83,6 @@ export default {
     return {
       name: '',
       email: '',
-      subject: '',
-      message: '',
       results: [] as any[]
     };
   },
@@ -137,24 +135,7 @@ export default {
       return formatTimeSince(item)
     },
     signUp: function(e:any) {
-      console.log(`signUp : ${this.name} ${this.subject} ${this.email} ${this.message}`)
-
-      this.subject = `${import.meta.env.VITE_WWW_BASE_URL} signup`
-      this.message = `Please add me to your newsletter: ${this.name} ${this.email}`
-
-      let url = `${import.meta.env.VITE_WWW_BASE_URL}/api/mail?name=${this.name}&subject=${this.subject}&email=${this.email}&message=${this.message}`
-      fetch(url)
-          .then(response => response.json())
-          .then(json => {
-            this.name = '';
-            this.email = '';
-            this.subject = '';
-            this.message = '';
-            alert('You have been signed up. Thank you!')
-          }).catch(err => {
-            //console.log(err)
-          })
-        e.preventDefault();
+      signUp(e, this.name, this.email);
     }
   },
   beforeMount() {

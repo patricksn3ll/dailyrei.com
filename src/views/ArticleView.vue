@@ -12,7 +12,9 @@
     <div class="container container-single penci_sidebar penci-enable-lightbox" style="transform: none;">
         <div id="main" class="penci-main-sticky-sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
             <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static;">
-                <article id="post-241" class="post type-post status-publish">
+              <div class="post-entry blockquote-style-2">
+                <div class="inner-post-entry entry-content">
+                  <article id="post-241" class="post type-post status-publish">
                     <div class="header-standard header-classic single-header">
                         <div class="penci-standard-cat"><span class="cat"><a class="penci-cat-name penci-cat-8" :href="formatCategoryHref(item)" rel="category tag"><span>{{ formatCategory(item) }}</span></a></span></div>
                         <h1 class="post-title single-post-title entry-title">{{ formatTitle(item) }}</h1>
@@ -59,6 +61,8 @@
                     <Related />
 
                 </article>
+                </div>
+              </div>
             </div>
         </div>
 
