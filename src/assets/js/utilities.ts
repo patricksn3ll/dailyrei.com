@@ -36,14 +36,14 @@ export function formatTagHref(tag: any) {
 
 export function formatImage(item: any) {
   if (item?.image?.replaceAll('"', '') == "") {
-    return '/assets/images/place-holder.png'
+    return `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=rimg&domain=${import.meta.env.VITE_DOMAIN}`
   }
   return item?.image?.replaceAll('"', '')
 };
 
 export function formatBgImage(item: any) {
   if (item?.image?.replaceAll('"', '') == "") {
-    return `background-image: url('/assets/images/place-holder.png');`
+    return `background-image: url('${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=rimg&domain=${import.meta.env.VITE_DOMAIN}')`
   }
   return `background-image: url('${item?.image?.replaceAll('"', '')}');`
 };
