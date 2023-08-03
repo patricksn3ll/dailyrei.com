@@ -28,7 +28,7 @@
                                   <div class="penci-smalllist-wrapper">
                                     <div class="penci-smalllist pcsl-wrapper pwsl-id-default">
                                         <div class="pcsl-inner penci-clearfix pcsl-grid pcsl-imgpos-left pcsl-col-1 pcsl-tabcol-2 pcsl-mobcol-1">
-                                          <div class="pcsl-item pcsl-nothumb" v-for="item in results.slice(0, 4)" :key="item">
+                                          <div class="pcsl-item pcsl-nothumb" v-for="item in results.slice(4, 8)" :key="item">
                                               <div class="pcsl-itemin">
                                                 <div class="pcsl-iteminer">
                                                     <div class="pcsl-content">
@@ -55,7 +55,7 @@
                                   <div class="penci-clearfix penci-biggrid penci-bgstyle-1 penci-bgel">
                                     <div class="penci-biggrid-inner default">
                                         <div class="penci-clearfix penci-biggrid-data penci-dflex">
-                                          <div class="penci-bgitem"  v-for="item in results.slice(4, 8)" :key="item">
+                                          <div class="penci-bgitem"  v-for="item in results.slice(0, 4)" :key="item">
                                               <div class="penci-bgitin">
                                                 <div class="penci-bgmain">
                                                     <div class="pcbg-thumb">
