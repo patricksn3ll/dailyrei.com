@@ -116,3 +116,17 @@ export function formatTimeSince(item: any) {
 export function formatIndex(results: any, item: any) {
   return results.indexOf(item)+1
 };
+
+export async function signUp(e:any, name:string, email:string) {
+  console.log(`signUp : ${name} ${email}`)
+
+  let url = `${import.meta.env.VITE_API_BASE_URL}/api/Signup?name=${name}&email=${email}&domain=${import.meta.env.VITE_DOMAIN}`
+  fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        alert('You have been signed up. Thank you!')
+      }).catch(err => {
+        console.log(err)
+      })
+    e.preventDefault();
+}
