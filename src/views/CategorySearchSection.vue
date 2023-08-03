@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     fecthContent: function() {
-      let url = `${import.meta.env.VITE_WWW_BASE_URL}/api/GetFeedItemsBy?filter=search&query=${this.query}&page=${this.pageCounter}&pageSize=${this.pageSize}&count=100`
+      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=search&query=${this.query}&page=${this.pageCounter}&pageSize=${this.pageSize}&count=100`
      fetch(url)
           .then(response => response.json())
           .then(json => {
