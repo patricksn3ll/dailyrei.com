@@ -28,21 +28,12 @@
 import {formatHref, formatTitle, formatCategory , formatCategoryHref, formatAuthor, formatAuthorHref, formatPublishDate, formatTimeSince, formatImage, formatBgImage, formatDescription, titleLength} from '../assets/js/utilities.js'
 
 export default {
-  name: 'CategoryVideoSection',
+  name: 'CategorySearchSection',
   components: {
 
   },
   props: {
-
     category : {
-      type: String,
-      default: ''
-    },
-    author : {
-      type: String,
-      default: ''
-    },
-    tag : {
       type: String,
       default: ''
     },
@@ -56,7 +47,8 @@ export default {
       results: [] as any[],
       pageCounter: 0,
       pageSize: 10,
-      item: {} as any
+      item: {} as any,
+      query: this.$route.query.query as string
     };
   },
   setup() {
@@ -65,7 +57,7 @@ export default {
   },
   methods: {
     fecthContent: function() {
-      let url = `${import.meta.env.VITE_WWW_BASE_URL}/api/videos?page=${this.pageCounter}&pageSize=${this.pageSize}&count=100`
+      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=search&query=${this.query}&page=${this.pageCounter}&pageSize=${this.pageSize}&count=100`
      fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -73,21 +65,21 @@ export default {
             this.pageCounter++
           })
     },
-    formatHref: function(item:any) {
-      return item["media:content"]["url"]
+    formatHref: function(item: any) {
+      return formatHref(item);
     },
-    formatTitle: function(item:any, length?:number) {
-      length = length || 88
-      return item["media:title"].substring(0, length)
+    formatImage: function(item: any) {
+        return formatImage(item);
     },
-    formatImage: function(item:any) {
-      return item["media:thumbnail"]["url"]
+    formatBgImage: function(item: any) {
+        return formatBgImage(item);
+    },
+    formatTitle: function(item: any) {
+      length = length || 82
+      return formatTitle(item, length );
     },
     formatAuthor: function(item:any) {
       return formatAuthor(item)
-    },
-    formatBgImage: function(item:any) {
-      return  `background-image: url('${ item["media:thumbnail"]["url"]}');`
     },
     formatCategory: function(item:any) {
       return formatCategory(item)
