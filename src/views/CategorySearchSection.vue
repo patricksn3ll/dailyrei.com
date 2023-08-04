@@ -65,21 +65,21 @@ export default {
             this.pageCounter++
           })
     },
-    formatHref: function(item:any) {
-      return item["media:content"]["url"]
+    formatHref: function(item: any) {
+      return formatHref(item);
     },
-    formatTitle: function(item:any, length?:number) {
-      length = length || 88
-      return item["media:title"].substring(0, length)
+    formatImage: function(item: any) {
+        return formatImage(item);
     },
-    formatImage: function(item:any) {
-      return item["media:thumbnail"]["url"]
+    formatBgImage: function(item: any) {
+        return formatBgImage(item);
+    },
+    formatTitle: function(item: any) {
+      length = length || 82
+      return formatTitle(item, length );
     },
     formatAuthor: function(item:any) {
       return formatAuthor(item)
-    },
-    formatBgImage: function(item:any) {
-      return  `background-image: url('${ item["media:thumbnail"]["url"]}');`
     },
     formatCategory: function(item:any) {
       return formatCategory(item)
