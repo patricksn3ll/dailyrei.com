@@ -82,10 +82,10 @@ export default {
       return formatAuthor(item)
     },
     formatCategory: function(item:any) {
-      return formatCategory(item)
+      return formatCategory(this.category)
     },
     formatCategoryHref: function(item:any) {
-      return formatCategoryHref(item)
+      return formatCategoryHref(this.category)
     },
     formatAuthorHref: function(item:any) {
       return formatAuthorHref(item)
