@@ -12,6 +12,9 @@
                 <div class="penci-hide-tagupdated"> <span class="author-italic author vcard">by <a class="author-url url fn n" :href="formatAuthorHref(item)">{{ formatAuthor(item) }}</a> </span> <time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time> </div>
                 <div class="grid-post-box-meta"> <span class="otherl-date-author author-italic author vcard">by <a class="author-url url fn n" :href="formatAuthorHref(item)">{{ formatAuthor(item) }}</a> </span> <span class="otherl-date"><time class="entry-date published" :datetime="formatPublishDate(item)">{{ formatTimeSince(item) }}</time></span> </div>
             </div>
+            <div class="item-content entry-content">
+              <p>{{ item?.metadata_description.replaceAll('"', '') }}</p>
+            </div>
         </div>
     </article>
     </li>
@@ -57,7 +60,7 @@ export default {
   },
   methods: {
     fecthContent: function() {
-      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=search&query=${this.query}&page=${this.pageCounter}&pageSize=${this.pageSize}&count=100`
+      let url = `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=search&query=${this.query}&domain=${import.meta.env.VITE_DOMAIN}&page=${this.pageCounter}&pageSize=${this.pageSize}&count=100`
      fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -76,7 +79,7 @@ export default {
     },
     formatTitle: function(item: any) {
       length = length || 82
-      return formatTitle(item, length );
+      return formatTitle(item, length);
     },
     formatAuthor: function(item:any) {
       return formatAuthor(item)
