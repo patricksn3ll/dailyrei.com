@@ -38,14 +38,14 @@ export function formatImage(item: any) {
   if (item?.image?.replaceAll('"', '') == "") {
     return `${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=rimg&domain=${import.meta.env.VITE_DOMAIN}`
   }
-  return item?.image?.replaceAll('"', '')
+  return item?.image?.replaceAll('"', '').replaceAll('http://', 'https://')
 };
 
 export function formatBgImage(item: any) {
   if (item?.image?.replaceAll('"', '') == "") {
     return `background-image: url('${import.meta.env.VITE_API_BASE_URL}/api/GetFeedItemsBy?filter=rimg&domain=${import.meta.env.VITE_DOMAIN}')`
   }
-  return `background-image: url('${item?.image?.replaceAll('"', '')}');`
+  return `background-image: url('${item?.image?.replaceAll('"', '').replaceAll('http://', 'https://')}');`
 };
 
 export function formatTitle(item: any, length: number) {
