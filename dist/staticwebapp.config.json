@@ -10,7 +10,7 @@
     }
   ],
   "globalHeaders": {
-    "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'",
+    "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline' data:; object-src 'none'",
     "content-type": "text/html; charset=utf-8"
   },
   "navigationFallback": {
